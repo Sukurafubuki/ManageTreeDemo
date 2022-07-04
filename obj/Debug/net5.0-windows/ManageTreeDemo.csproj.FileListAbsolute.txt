@@ -1,0 +1,50 @@
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.exe
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.deps.json
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.runtimeconfig.json
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.runtimeconfig.dev.json
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\bin\Debug\net5.0-windows\ref\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.pdb
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.csproj.AssemblyReference.cache
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\MainWindow.g.cs
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\App.g.cs
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo_MarkupCompile.cache
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo_MarkupCompile.lref
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\MainWindow.baml
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.g.resources
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.GeneratedMSBuildEditorConfig.editorconfig
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.AssemblyInfoInputs.cache
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.AssemblyInfo.cs
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.csproj.CoreCompileInputs.cache
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ref\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.pdb
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.genruntimeconfig.cache
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.exe
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.deps.json
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.runtimeconfig.json
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.runtimeconfig.dev.json
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\bin\Debug\net5.0-windows\ref\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\bin\Debug\net5.0-windows\ManageTreeDemo.pdb
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\MainWindow.g.cs
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\App.g.cs
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo_MarkupCompile.cache
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo_MarkupCompile.lref
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\MainWindow.baml
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.g.resources
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.GeneratedMSBuildEditorConfig.editorconfig
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.AssemblyInfoInputs.cache
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.AssemblyInfo.cs
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.csproj.CoreCompileInputs.cache
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ref\ManageTreeDemo.dll
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.pdb
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.genruntimeconfig.cache
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\Windows\AddNodeWindow.g.cs
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\Windows\AddNodeWindow.baml
+D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.csproj.AssemblyReference.cache
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\Windows\AddNodeWindow.g.cs
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\Windows\AddNodeWindow.baml

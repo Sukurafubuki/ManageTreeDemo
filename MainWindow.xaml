@@ -1,0 +1,50 @@
+﻿<Window x:Class="ManageTreeDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:VM="clr-namespace:ManageTreeDemo.ViewModel"
+        xmlns:local="clr-namespace:ManageTreeDemo"
+        mc:Ignorable="d"
+        Title="ManageTreeDemo" Height="656" Width="1128">
+    <Window.Resources>
+        <HierarchicalDataTemplate x:Key="MyTreeItemTemplate"  DataType="{x:Type VM:MainTreeViewVM}" ItemsSource="{Binding Path=ChildNodes,Mode=OneWay}">
+            <StackPanel x:Name="My_SP"  Orientation="Horizontal" Margin="2,2,0,2">
+                <!--<Image VerticalAlignment="Center" Source="{Binding Icon}"/>-->
+                <TextBlock  Text="{Binding Path=NodeName,Mode=OneWay}" Margin="0,2,0,2" Width="200" Height="22"/>
+                <TextBox Name="Renametxb" Text="{Binding Path=NodeName,Mode=OneWay}"  Visibility="Collapsed" HorizontalAlignment="Center" Margin="-200,0,0,0" Height="22" Width="200" LostFocus="Renametxb_LostFocus"></TextBox>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        <Style x:Key="TreeViewItemStyle" TargetType="{x:Type TreeViewItem}">
+            <Setter Property="IsExpanded" Value="True" />
+            <!--<Setter Property="IsSelected" Value="{Binding Path=IsSelected,Mode=TwoWay}"/>-->
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#F1F1F1">
+            <MenuItem Header="文件" FontSize="17">
+                <MenuItem Header="新建工程" FontSize="17" Width="170"  Padding="0" Click="NewProgram_Click"></MenuItem>
+                <MenuItem Header="打开工程" FontSize="17" Width="170"  Padding="0" Click="OpenProgram_Click"></MenuItem>
+                <MenuItem Header="刷新" FontSize="17" Width="170"  Padding="0" Click="RefTest_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="其他" FontSize="17"></MenuItem>
+        </Menu>
+        <TreeView Grid.Row="1" Grid.Column="0" FontSize="17" x:Name="MainTreeView" ItemsSource="{Binding MainTrees}" 
+                  ItemTemplate="{StaticResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown">
+            <TreeView.ContextMenu>
+                <ContextMenu ItemsSource="{Binding MenuItems}">
+                </ContextMenu>
+            </TreeView.ContextMenu>
+        </TreeView>
+        <GridSplitter Grid.Column="1" Grid.Row="1" Background="#F1F1F1" Width="6" VerticalAlignment="Stretch" HorizontalAlignment="Center" ></GridSplitter>
+    </Grid>
+</Window>
