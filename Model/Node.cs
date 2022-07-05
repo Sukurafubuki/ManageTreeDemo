@@ -5,9 +5,36 @@ using System.Text;
 using System.Threading.Tasks;
 using ManageTreeDemo.Common;
 using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace ManageTreeDemo.Model
 {
+    public class StringToImageSourceConverter : IValueConverter
+    {
+        #region Converter
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string path = (string)value;
+            if (!string.IsNullOrEmpty(path))
+            {
+                return new BitmapImage(new Uri(path, UriKind.Absolute));
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+        #endregion
+    }
     /// <summary>
     /// Node实体类
     /// </summary>
@@ -18,6 +45,9 @@ namespace ManageTreeDemo.Model
         {
             this.NodeID = Guid.NewGuid().ToString();
             this.ChildNodes = new ObservableCollection<Node>();
+            //this.NodeIconPath = @"D:\VSCodes\ManageTreeDemo\ManageTreeDemo\Model\Icons\node_icon.png";
+            //拼接图标路径，param1为debug下的exe所在路径
+            this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
             //this.NodeType = NodeType.testNode;
         }
 
@@ -26,6 +56,8 @@ namespace ManageTreeDemo.Model
             this.NodeID = Guid.NewGuid().ToString();
             this.NodeName = name;
             this.ChildNodes = new ObservableCollection<Node>();
+            //this.NodeIconPath = @"D:\VSCodes\ManageTreeDemo\ManageTreeDemo\Model\Icons\node_icon.png";
+            this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
         }
         #endregion
 
@@ -48,6 +80,13 @@ namespace ManageTreeDemo.Model
         }
         #endregion
 
+        #region 节点图标
+        /// <summary>
+        /// 节点图标
+        /// </summary>
+        public string NodeIconPath { get; set; }
+        #endregion
+
         #region 节点名称
         /// <summary>
         ///  节点名称
@@ -59,7 +98,7 @@ namespace ManageTreeDemo.Model
         /// <summary>
         /// 节点携带的内容
         /// </summary>
-        public string NodeContent { get; set; }
+        public virtual string NodeContent { get; set; }
         #endregion
 
         #region 节点类型
@@ -80,9 +119,6 @@ namespace ManageTreeDemo.Model
         //}
         #endregion
 
-        #region 节点内容
-
-        #endregion
         #endregion
 
         #region 树结构

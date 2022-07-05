@@ -31,7 +31,12 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Name="confirmbtn" Content="确认" FontSize="16" HorizontalAlignment="Left" Margin="66,135,0,0" VerticalAlignment="Top" Click="confirmbtn_Click" Width="40" Height="26"/>
-        <Button Name="canclebtn" Content="取消" FontSize="16" HorizontalAlignment="Left" Margin="171,135,0,0" VerticalAlignment="Top" Click="canclebtn_Click" Width="40" Height="26"/>
+        <Label Content="节点类型" FontSize="16" HorizontalAlignment="Left" Margin="51,108,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="NodetypeCmb" HorizontalAlignment="Left" Margin="140,113,0,0" VerticalAlignment="Top" Width="100" SelectedIndex="0">
+            <ComboBoxItem Content="Normal"/>
+            <ComboBoxItem Content="Directory"/>
+        </ComboBox>
+        <Button Name="confirmbtn" Content="确认" FontSize="16" HorizontalAlignment="Left" Margin="66,150,0,0" VerticalAlignment="Top" Click="confirmbtn_Click" Width="40" Height="26"/>
+        <Button Name="canclebtn" Content="取消" FontSize="16" HorizontalAlignment="Left" Margin="171,150,0,0" VerticalAlignment="Top" Click="canclebtn_Click" Width="40" Height="26"/>
     </Grid>
 </Window>

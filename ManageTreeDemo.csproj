@@ -6,4 +6,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Model\Icons\directory_icon.png" />
+    <None Remove="Model\Icons\node_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Model\Icons\directory_icon.png" />
+    <Resource Include="Model\Icons\node_icon.png" />
+  </ItemGroup>
+
 </Project>

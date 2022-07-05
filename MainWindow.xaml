@@ -4,14 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:VM="clr-namespace:ManageTreeDemo.ViewModel"
+        xmlns:converters="clr-namespace:ManageTreeDemo.Model"
         xmlns:local="clr-namespace:ManageTreeDemo"
         mc:Ignorable="d"
         Title="ManageTreeDemo" Height="656" Width="1128">
     <Window.Resources>
+        <converters:StringToImageSourceConverter x:Key="MyImageConverter"></converters:StringToImageSourceConverter>
         <HierarchicalDataTemplate x:Key="MyTreeItemTemplate"  DataType="{x:Type VM:MainTreeViewVM}" ItemsSource="{Binding Path=ChildNodes,Mode=OneWay}">
             <StackPanel x:Name="My_SP"  Orientation="Horizontal" Margin="2,2,0,2">
-                <!--<Image VerticalAlignment="Center" Source="{Binding Icon}"/>-->
-                <TextBlock  Text="{Binding Path=NodeName,Mode=OneWay}" Margin="0,2,0,2" Width="200" Height="22"/>
+                <Image VerticalAlignment="Center" Source="{Binding Path=NodeIconPath,Converter={StaticResource MyImageConverter}}"/>
+                <TextBlock  Text="{Binding Path=NodeName,Mode=OneWay}" Margin="5,2,0,2" Width="200" Height="22"/>
                 <TextBox Name="Renametxb" Text="{Binding Path=NodeName,Mode=OneWay}"  Visibility="Collapsed" HorizontalAlignment="Center" Margin="-200,0,0,0" Height="22" Width="200" LostFocus="Renametxb_LostFocus"></TextBox>
             </StackPanel>
         </HierarchicalDataTemplate>

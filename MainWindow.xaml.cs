@@ -35,6 +35,9 @@ namespace ManageTreeDemo
             _maintreeVM = new MainTreeViewVM(this);
             InitializeComponent();
             this.DataContext = _maintreeVM;
+            string str1 = System.AppDomain.CurrentDomain.BaseDirectory;
+            string str = Environment.CurrentDirectory;
+            string str2 = System.IO.Path.Combine(str, @"..\..\..\Model\Icons\node_icon.png");
         }
 
         /// <summary>

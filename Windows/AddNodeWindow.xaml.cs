@@ -47,7 +47,15 @@ namespace ManageTreeDemo.Windows
         /// <param name="e"></param>
         private void confirmbtn_Click(object sender, RoutedEventArgs e)
         {
-            XmlHelper.Insert(fullpath, Datas.ParentNodeSite, "Name", NodeNametxb.Text);
+            if (NodetypeCmb.SelectedIndex == 0)
+            {
+                XmlHelper.Insert(fullpath, Datas.ParentNodeSite, "Name", NodeNametxb.Text);
+            }
+            else
+            {
+                string str = fullpath.Substring(0, fullpath.LastIndexOf(".") );
+                FileHelper.CreateDirectory(str);
+            }
             this.Close();
         }
 

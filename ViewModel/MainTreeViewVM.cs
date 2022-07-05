@@ -228,7 +228,7 @@ namespace ManageTreeDemo.ViewModel
             Node _mySJZ = new Node("西安");
             Node _mySD = new Node("渭南");
 
-            Node _myTS = new Node("汉中");
+            Directory _myTS = new Directory("汉中");
 
             _myHB.CreateTreeWithChildre(_mySJZ);
             _myHB.CreateTreeWithChildre(_mySD);
@@ -248,7 +248,7 @@ namespace ManageTreeDemo.ViewModel
             //MainTrees[0].CreateTreeWithChildre(new Node("testtesttest"));界面更新，VM绑定测试
             if (string.IsNullOrEmpty(fullpath))
                 throw new Exception("打开失败");
-            Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath),false);
+            Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath), false);
             MainTrees.Clear();
             MainTrees.Add(_mainTree);
         }

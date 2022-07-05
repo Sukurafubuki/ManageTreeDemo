@@ -364,6 +364,7 @@ namespace ManageTreeDemo.Helpers
             {
                 XmlElement childnodeElement = (XmlElement)childnode;
                 //node.ChildNodes.Add(getxmlNodes(xmlpath, node.Site+"/" +childnodeElement.GetAttribute("Name" ).ToString()));
+                if(childnode.NodeType==)
                 node.ChildNodes.Add(GetXmlTreeByRecursion<T>(xmlpath, node.Site + "/" + childnode.Name.ToString(),false));
             }
             return node;
