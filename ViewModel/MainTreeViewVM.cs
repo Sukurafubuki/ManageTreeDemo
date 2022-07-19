@@ -63,6 +63,40 @@ namespace ManageTreeDemo.ViewModel
                 selecttxb.Focus();
             }
         }
+        /// <summary>
+        /// 复制命令触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        void CopyExecute(object sender)
+        {
+            if (_selectItem != null)
+            {
+                //MessageBox.Show("CopyExecute");
+                //复制选择节点对象到剪切板（mainwindow静态变量）
+                MainWindow.Clipper = _selectItem.Header as Node;
+            }
+        }
+        /// <summary>
+        /// 粘贴命令触发事件
+        /// </summary>
+        /// <param name="sender"></param>
+        void PasteExecute(object sender)
+        {
+            if (_selectItem != null)
+            {
+                //MessageBox.Show("PasteExecute");
+                //粘贴剪切板clipper对象中的节点
+                //递归插入
+                XmlHelper.InsertByRecursion<Node>(fullpath, (_selectItem.Header as Node).Site, MainWindow.Clipper);
+                RefTree();
+            }
+        }
+        /// <summary>
+        /// 寻找视觉树中的树节点
+        /// </summary>
+        /// <typeparam name="childItem"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
@@ -109,6 +143,20 @@ namespace ManageTreeDemo.ViewModel
             get
             {
                 return new RelayCommand<object>(ReNameExecute, CanUpdateNameExecute);
+            }
+        }
+        public ICommand _copyAction
+        {
+            get
+            {
+                return new RelayCommand<object>(CopyExecute, CanUpdateNameExecute);
+            }
+        }
+        public ICommand _pasteAction
+        {
+            get
+            {
+                return new RelayCommand<object>(PasteExecute, CanUpdateNameExecute);
             }
         }
         #endregion
@@ -196,6 +244,20 @@ namespace ManageTreeDemo.ViewModel
             _rNameItem.Header = "重命名";
             _rNameItem.Command = _rNameAction;
             MenuItems.Add(_rNameItem);
+
+            ///复制
+            ///
+            MenuItem _copyItem = new MenuItem();
+            _copyItem.Header = "复制";
+            _copyItem.Command = _copyAction;
+            MenuItems.Add(_copyItem);
+            ///粘贴
+            ///
+            /////////////////////////////////////////////粘贴item.灰度=剪切板==null? 可选:不可选
+            MenuItem _pasteItem = new MenuItem();
+            _pasteItem.Header = "粘贴";
+            _pasteItem.Command = _pasteAction;
+            MenuItems.Add(_pasteItem);
         }
         #endregion
 
@@ -247,10 +309,13 @@ namespace ManageTreeDemo.ViewModel
         {
             //MainTrees[0].CreateTreeWithChildre(new Node("testtesttest"));界面更新，VM绑定测试
             if (string.IsNullOrEmpty(fullpath))
-                throw new Exception("打开失败");
-            Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath), false);
-            MainTrees.Clear();
-            MainTrees.Add(_mainTree);
+            { }
+            else
+            {
+                Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath), false);
+                MainTrees.Clear();
+                MainTrees.Add(_mainTree);
+            }
         }
         #endregion
 
@@ -314,9 +379,10 @@ namespace ManageTreeDemo.ViewModel
                     XmlDocument xmlDocument = new XmlDocument();
                     XmlDeclaration xmlDeclaration = xmlDocument.CreateXmlDeclaration("1.0", "UTF-8", "");
                     xmlDocument.AppendChild(xmlDeclaration);
-                    XmlElement program = xmlDocument.CreateElement(System.IO.Path.GetFileNameWithoutExtension(fullpath));
+                    XmlElement program = xmlDocument.CreateElement(System.IO.Path.GetFileNameWithoutExtension(fullpath));//元素名
                     xmlDocument.AppendChild(program);
                     program.SetAttribute("Name", System.IO.Path.GetFileNameWithoutExtension(fullpath));
+                    program.SetAttribute("NodeType", NodeType.Normal.ToString());
                     ///************************//
                     xmlDocument.Save(fs);
                     fs.Close();

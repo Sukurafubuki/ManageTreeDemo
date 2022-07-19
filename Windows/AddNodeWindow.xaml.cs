@@ -22,6 +22,9 @@ namespace ManageTreeDemo.Windows
     /// </summary>
     public partial class AddNodeWindow : Window
     {
+        /// <summary>
+        /// 添加窗口数据源
+        /// </summary>
         public class adddata : NotifyPropertyBase
         {
             /// <summary>
@@ -31,7 +34,9 @@ namespace ManageTreeDemo.Windows
         }
 
         adddata Datas=new adddata();
+
         string fullpath;
+
         public AddNodeWindow(string xmlpath, Node parentNode)
         {
             fullpath = xmlpath;
@@ -49,12 +54,16 @@ namespace ManageTreeDemo.Windows
         {
             if (NodetypeCmb.SelectedIndex == 0)
             {
-                XmlHelper.Insert(fullpath, Datas.ParentNodeSite, "Name", NodeNametxb.Text);
+                string str = Guid.NewGuid().ToString();
+                XmlHelper.Insert(fullpath, Datas.ParentNodeSite, NodeNametxb.Text ,"Name", NodeNametxb.Text);//添加节点
+                XmlHelper.Insert(fullpath, Datas.ParentNodeSite + "/" + NodeNametxb.Text , "", "NodeType", NodetypeCmb.Text);//设置属性值
             }
             else
             {
-                string str = fullpath.Substring(0, fullpath.LastIndexOf(".") );
-                FileHelper.CreateDirectory(str);
+                string str = Guid.NewGuid().ToString();
+                FileHelper.CreateDirectory(fullpath.Substring(0, fullpath.LastIndexOf("\\") + 1) + NodeNametxb.Text);
+                XmlHelper.Insert(fullpath, Datas.ParentNodeSite, NodeNametxb.Text, "Name", NodeNametxb.Text);//添加节点
+                XmlHelper.Insert(fullpath, Datas.ParentNodeSite + "/" + NodeNametxb.Text, "", "NodeType", NodetypeCmb.Text);//设置属性值
             }
             this.Close();
         }

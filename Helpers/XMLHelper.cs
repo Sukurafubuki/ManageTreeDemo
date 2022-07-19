@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using ManageTreeDemo.Model;
+using ManageTreeDemo.Common;
 
 namespace ManageTreeDemo.Helpers
 {
@@ -60,6 +61,31 @@ namespace ManageTreeDemo.Helpers
         #endregion
 
         #region 插入节点
+
+        #region 递归插入节点(粘贴）
+        public static bool InsertByRecursion<T>(string xmlpath,string site, T data) where T : Node, new()
+        {
+            try 
+            {
+                //xml节点路径相同（同位置同名节点，添加属性只能找到第一个节点）
+                //添加节点
+                Insert(xmlpath, site, data.NodeName, "Name", data.NodeName);
+                //插入属性
+                Insert(xmlpath, site + "/" + data.NodeName, "", "NodeType", data.NodeType.ToString()) ;
+                //Insert(xmlpath, site + "/" + data.NodeName, "", "NodeContent", data.NodeContent);
+                foreach (T childnode in data.ChildNodes)
+                {
+                    InsertByRecursion<T>(xmlpath, site + "/" + data.NodeName, childnode);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
         #region 插入节点（元素名属性名属性值）
         /// <summary>
         /// 插入数据
@@ -360,17 +386,20 @@ namespace ManageTreeDemo.Helpers
             ///赋值节点信息
             node.NodeName = xmlElement.GetAttribute("Name").ToString();
             node.Site = xmlsite;
+            node.NodeType =(NodeType)System.Enum.Parse(typeof(NodeType), xmlElement.GetAttribute("NodeType").ToString());
+            //node.NodeContent = xmlElement.GetAttribute("NodeContent").ToString();
             foreach (XmlNode childnode in xmlnode)
             {
                 XmlElement childnodeElement = (XmlElement)childnode;
                 //node.ChildNodes.Add(getxmlNodes(xmlpath, node.Site+"/" +childnodeElement.GetAttribute("Name" ).ToString()));
-                if(childnode.NodeType==)
-                node.ChildNodes.Add(GetXmlTreeByRecursion<T>(xmlpath, node.Site + "/" + childnode.Name.ToString(),false));
+                if (childnode.Attributes["NodeType"].Value.ToString() == NodeType.Normal.ToString())
+                    node.ChildNodes.Add(GetXmlTreeByRecursion<Node>(xmlpath, node.Site + "/" + childnode.Name.ToString(), false));
+                else
+                    node.ChildNodes.Add(GetXmlTreeByRecursion<Model.Directory>(xmlpath, node.Site + "/" + childnode.Name.ToString(), false));
             }
             return node;
         }
         #endregion
-
         #endregion
 
         #region 更新XML文件中的指定节点内容

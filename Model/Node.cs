@@ -16,6 +16,14 @@ namespace ManageTreeDemo.Model
     {
         #region Converter
 
+        /// <summary>
+        /// 路径字符串转换为路径（界面图标路径绑定字符用）
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string path = (string)value;
@@ -43,9 +51,8 @@ namespace ManageTreeDemo.Model
         #region 构造函数
         public Node()
         {
-            this.NodeID = Guid.NewGuid().ToString();
+            //this.NodeID = Guid.NewGuid().ToString();
             this.ChildNodes = new ObservableCollection<Node>();
-            //this.NodeIconPath = @"D:\VSCodes\ManageTreeDemo\ManageTreeDemo\Model\Icons\node_icon.png";
             //拼接图标路径，param1为debug下的exe所在路径
             this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
             //this.NodeType = NodeType.testNode;
@@ -53,10 +60,9 @@ namespace ManageTreeDemo.Model
 
         public Node(string name)
         {
-            this.NodeID = Guid.NewGuid().ToString();
+            //this.NodeID = Guid.NewGuid().ToString();
             this.NodeName = name;
             this.ChildNodes = new ObservableCollection<Node>();
-            //this.NodeIconPath = @"D:\VSCodes\ManageTreeDemo\ManageTreeDemo\Model\Icons\node_icon.png";
             this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
         }
         #endregion
@@ -102,21 +108,21 @@ namespace ManageTreeDemo.Model
         #endregion
 
         #region 节点类型
-        //private NodeType _nodetype;
-        ///// <summary>
-        ///// 节点类型（区分文件夹，变量，设备等类型）
-        ///// </summary>
-        //public NodeType NodeType
-        //{
-        //    get
-        //    {
-        //        return _nodetype;
-        //    }
-        //    set
-        //    {
-        //        _nodetype = value;
-        //    }
-        //}
+        private NodeType _nodetype;
+        /// <summary>
+        /// 节点类型（区分文件夹，变量，设备等类型）
+        /// </summary>
+        public NodeType NodeType
+        {
+            get
+            {
+                return _nodetype;
+            }
+            set
+            {
+                _nodetype = value;
+            }
+        }
         #endregion
 
         #endregion

@@ -26,18 +26,21 @@ namespace ManageTreeDemo
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        Point _lastMouseDown;
         MainTreeViewVM _maintreeVM;
+        bool IsDrop = false;
+        Node moveTreeItem;
 
-        public static string fullpath = null;
+        /// <summary>
+        /// 剪切板
+        /// </summary>
+        public static Node Clipper { get; set; }
+
         public MainWindow()
         {
             _maintreeVM = new MainTreeViewVM(this);
             InitializeComponent();
             this.DataContext = _maintreeVM;
-            string str1 = System.AppDomain.CurrentDomain.BaseDirectory;
-            string str = Environment.CurrentDirectory;
-            string str2 = System.IO.Path.Combine(str, @"..\..\..\Model\Icons\node_icon.png");
         }
 
         /// <summary>
@@ -89,6 +92,113 @@ namespace ManageTreeDemo
             texbox.Visibility = Visibility.Collapsed;
             XmlHelper.Update(MainTreeViewVM.fullpath, (_maintreeVM._selectItem.Header as Node).Site, "Name", texbox.Text);
             _maintreeVM.RefTree();
+        }
+
+        private void MainTreeView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _lastMouseDown = e.GetPosition(MainTreeView);
+        }
+
+        private void MainTreeView_MouseMove(object sender, MouseEventArgs e)
+        {
+            Node movenode;
+            TreeView _treeview = sender as TreeView;
+            try
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    Point currentPosition = e.GetPosition(MainTreeView);
+                    if ((Math.Abs(currentPosition.X - _lastMouseDown.X) > 2.0) || (Math.Abs(currentPosition.Y - _lastMouseDown.Y) > 2.0))
+                    {
+                        movenode = (Node)_treeview.SelectedItem;
+                        if (moveTreeItem != null)
+                        {
+                            IsDrop = true;
+                            DragDropEffects finalDropEffect = DragDrop.DoDragDrop(_treeview, movenode.NodeName, DragDropEffects.Move);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+
+        private void MainTreeView_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (moveTreeItem == null)
+            {
+                return;
+            }
+            var ele = e.OriginalSource as FrameworkElement;
+            if (ele != null)
+            {
+                var targetTreeItem = (Node)ele.DataContext;
+                if (targetTreeItem == null)
+                {
+                    
+                }
+            }
+        }
+
+
+        private void MainTreeView_CheckDropTarget(object sender, DragEventArgs e)
+        {
+            if (e.Source as TreeViewItem != null)
+            {
+                if (!IsValidDropTarget((e.Source as TreeViewItem).Tag))
+                {
+                    e.Effects = DragDropEffects.None;
+                }
+            }
+            e.Handled = true;
+        }
+
+
+        private bool IsValidDropTarget(object id)
+        {
+            bool res = false;
+            if (id != null)
+            {
+                //拖拽条件
+            }
+            return res;
+        }
+
+        private void MainTreeView_Drop(object sender, DragEventArgs e)
+        {
+            //TreeViewItem treeViewItemParent = new TreeViewItem();
+            //if (e.Source as TreeViewItem != null)
+            //{
+            //    treeViewItemParent = e.Source as TreeViewItem;//().Parent as TreeViewItem
+            //    if (MainTreeView.SelectedItem as TreeViewItem == (e.Source as TreeViewItem))
+            //    {
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    treeViewItemParent = e.Source as TreeViewItem;
+            //    if (MainTreeView.SelectedItem as TreeViewItem == e.Source as TreeViewItem)
+            //    {
+            //        return;
+            //    }
+            //}
+            ////进行增加删除功能
+            //TreeViewItem itemRemoved = MainTreeView.SelectedItem as TreeViewItem;
+            //CusRequireInfo cusRequireInfo = BLLCusRequire.GetModel(Convert.ToInt32(itemRemoved.Tag));
+            //if (cusRequireInfo.ParentId == 0)
+            //{
+            //    MainTreeView.Items.Remove(itemRemoved);
+            //}
+            //else
+            //{
+            //    (itemRemoved.Parent as TreeViewItem).Items.Remove(itemRemoved);
+            //}
+            //(treeViewItemParent).Items.Add(itemRemoved);
+            //cusRequireInfo.ParentId = Convert.ToInt32(treeViewItemParent.Tag);
+            //BLLCusRequire.Update(cusRequireInfo);
         }
 
         //private Node getxmlNodes(string xmlpath,string xmlsite)

@@ -41,7 +41,9 @@
             <MenuItem Header="其他" FontSize="17"></MenuItem>
         </Menu>
         <TreeView Grid.Row="1" Grid.Column="0" FontSize="17" x:Name="MainTreeView" ItemsSource="{Binding MainTrees}" 
-                  ItemTemplate="{StaticResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown">
+                  ItemTemplate="{StaticResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown" 
+                  PreviewMouseLeftButtonDown="MainTreeView_PreviewMouseLeftButtonDown" MouseMove="MainTreeView_MouseMove" MouseUp="MainTreeView_MouseUp"
+                  DragEnter="MainTreeView_CheckDropTarget" DragLeave="MainTreeView_CheckDropTarget" DragOver="MainTreeView_CheckDropTarget" Drop="MainTreeView_Drop" AllowDrop="True" >
             <TreeView.ContextMenu>
                 <ContextMenu ItemsSource="{Binding MenuItems}">
                 </ContextMenu>
