@@ -26,9 +26,8 @@ namespace ManageTreeDemo
     /// </summary>
     public partial class MainWindow : Window
     {
-        Point _lastMouseDown;
         MainTreeViewVM _maintreeVM;
-        bool IsDrop = false;
+        Point _lastMouseDown;
         Node moveTreeItem;
 
         /// <summary>
@@ -101,7 +100,6 @@ namespace ManageTreeDemo
 
         private void MainTreeView_MouseMove(object sender, MouseEventArgs e)
         {
-            Node movenode;
             TreeView _treeview = sender as TreeView;
             try
             {
@@ -110,11 +108,10 @@ namespace ManageTreeDemo
                     Point currentPosition = e.GetPosition(MainTreeView);
                     if ((Math.Abs(currentPosition.X - _lastMouseDown.X) > 2.0) || (Math.Abs(currentPosition.Y - _lastMouseDown.Y) > 2.0))
                     {
-                        movenode = (Node)_treeview.SelectedItem;
+                        moveTreeItem = (Node)_treeview.SelectedItem;
                         if (moveTreeItem != null)
                         {
-                            IsDrop = true;
-                            DragDropEffects finalDropEffect = DragDrop.DoDragDrop(_treeview, movenode.NodeName, DragDropEffects.Move);
+                            DragDropEffects finalDropEffect = DragDrop.DoDragDrop(MainTreeView, MainTreeView.SelectedValue, DragDropEffects.Move);
                         }
                     }
                 }
@@ -147,10 +144,6 @@ namespace ManageTreeDemo
         {
             if (e.Source as TreeViewItem != null)
             {
-                if (!IsValidDropTarget((e.Source as TreeViewItem).Tag))
-                {
-                    e.Effects = DragDropEffects.None;
-                }
             }
             e.Handled = true;
         }
@@ -168,6 +161,7 @@ namespace ManageTreeDemo
 
         private void MainTreeView_Drop(object sender, DragEventArgs e)
         {
+            XmlHelper.Delete(MainTreeViewVM.fullpath, moveTreeItem.Site, "");
             //TreeViewItem treeViewItemParent = new TreeViewItem();
             //if (e.Source as TreeViewItem != null)
             //{
