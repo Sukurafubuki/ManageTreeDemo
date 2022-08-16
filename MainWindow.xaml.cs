@@ -131,6 +131,7 @@ namespace ManageTreeDemo
 
         private void MainTreeView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            _maintreeVM._selectItem = MainTreeView.SelectedItem as TreeViewItem;
             var ele = e.OriginalSource as FrameworkElement;
             if (ele != null)
             {
@@ -216,6 +217,14 @@ namespace ManageTreeDemo
             moveTreeItem = null;
             IsDrop = false;
             this.MainTreeView.Cursor = Cursors.Arrow;
+        }
+
+        private void MainTreeView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if ((sender as TreeView).SelectedItem != null)
+            {
+                _maintreeVM.NoedDouble_Click((sender as TreeView).SelectedItem as Node);
+            }
         }
         //private Node getxmlNodes(string xmlpath,string xmlsite)
         //{

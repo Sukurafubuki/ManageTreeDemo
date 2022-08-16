@@ -42,7 +42,7 @@
         </Menu>
         <TreeView Grid.Row="1" Grid.Column="0" FontSize="17" x:Name="MainTreeView" ItemsSource="{Binding MainTrees}" 
                   ItemTemplate="{StaticResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown"
-                  PreviewMouseLeftButtonDown="MainTreeView_PreviewMouseLeftButtonDown" MouseMove="MainTreeView_MouseMove" MouseUp="MainTreeView_MouseUp">
+                  PreviewMouseLeftButtonDown="MainTreeView_PreviewMouseLeftButtonDown" MouseMove="MainTreeView_MouseMove" MouseUp="MainTreeView_MouseUp" MouseDoubleClick="MainTreeView_MouseDoubleClick" >
             <TreeView.ContextMenu>
                 <ContextMenu ItemsSource="{Binding MenuItems}">
                 </ContextMenu>

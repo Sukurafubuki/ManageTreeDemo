@@ -206,10 +206,11 @@ namespace ManageTreeDemo.ViewModel
             set;
         }
 
+        private object nodedetail;
         /// <summary>
         /// 节点详情，绑定用户控件
         /// </summary>
-        public object _nodeDetail { get; set; }
+        public object _nodeDetail { get { return nodedetail; } set { nodedetail = value;OnPropertyChanged("_nodeDetail"); } }
         #endregion
 
         #region 构造函数
@@ -222,7 +223,6 @@ namespace ManageTreeDemo.ViewModel
             MainTrees = new ObservableCollection<Node>();
             MenuItems = new ObservableCollection<MenuItem>();
             CreateMenu();
-            _nodeDetail = new NodeDetails(TestCreateTree());
         }
 
         /// <summary>
@@ -407,6 +407,14 @@ namespace ManageTreeDemo.ViewModel
             {
                 throw new Exception(ex.Message);
             }
+        }
+        #endregion
+
+
+        #region 双击节点事件
+        public void NoedDouble_Click(Node _node)
+        {
+            _nodeDetail = new NodeDetails(_node);
         }
         #endregion
     }
