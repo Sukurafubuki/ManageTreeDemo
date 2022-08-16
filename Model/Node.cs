@@ -54,7 +54,8 @@ namespace ManageTreeDemo.Model
             //this.NodeID = Guid.NewGuid().ToString();
             this.ChildNodes = new ObservableCollection<Node>();
             //拼接图标路径，param1为debug下的exe所在路径
-            this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
+            //this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
+            this.NodeIconPath = @"pack://application:,,,/Model/Icons/node_icon.png";
             //this.NodeType = NodeType.testNode;
         }
 
@@ -63,7 +64,8 @@ namespace ManageTreeDemo.Model
             //this.NodeID = Guid.NewGuid().ToString();
             this.NodeName = name;
             this.ChildNodes = new ObservableCollection<Node>();
-            this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
+            //this.NodeIconPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Model\Icons\node_icon.png");
+            this.NodeIconPath = @"pack://application:,,,/Model/Icons/node_icon.png";
         }
         #endregion
 
@@ -72,7 +74,7 @@ namespace ManageTreeDemo.Model
         /// <summary>
         /// 节点ID
         /// </summary>
-        private string _nodeId { get; set; }
+        private string _nodeId ;
         public string NodeID
         {
             get

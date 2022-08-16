@@ -14,10 +14,11 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using ManageTreeDemo.Windows;
 using System.Windows.Media;
+using ManageTreeDemo.UserControls;
 
 namespace ManageTreeDemo.ViewModel
 {
-    public class MainTreeViewVM: NotifyPropertyBase
+    public class MainTreeViewVM : NotifyPropertyBase
     {
         #region commad及执行事件
         /// <summary>
@@ -29,7 +30,7 @@ namespace ManageTreeDemo.ViewModel
             {
                 //MessageBox.Show(_selectItem.NodeName);
                 //XmlHelper.Insert(fullpath, _selectItem.Site, "Name", "test");
-                AddNodeWindow _addnodewindow = new AddNodeWindow(fullpath,_selectItem.Header as Node);
+                AddNodeWindow _addnodewindow = new AddNodeWindow(fullpath, _selectItem.Header as Node);
                 _addnodewindow.Owner = mainwindow;
                 _addnodewindow.ShowDialog();
                 RefTree();
@@ -73,7 +74,7 @@ namespace ManageTreeDemo.ViewModel
             {
                 //MessageBox.Show("CopyExecute");
                 //复制选择节点对象到剪切板（mainwindow静态变量）
-                MainWindow.Clipper = _selectItem.Header as Node;
+                TreeNodeEdit.NodeCopy(_selectItem.Header as Node);
             }
         }
         /// <summary>
@@ -87,7 +88,7 @@ namespace ManageTreeDemo.ViewModel
                 //MessageBox.Show("PasteExecute");
                 //粘贴剪切板clipper对象中的节点
                 //递归插入
-                XmlHelper.InsertByRecursion<Node>(fullpath, (_selectItem.Header as Node).Site, MainWindow.Clipper);
+                TreeNodeEdit.NodePaste(_selectItem.Header as Node);
                 RefTree();
             }
         }
@@ -204,6 +205,11 @@ namespace ManageTreeDemo.ViewModel
             get;
             set;
         }
+
+        /// <summary>
+        /// 节点详情，绑定用户控件
+        /// </summary>
+        public object _nodeDetail { get; set; }
         #endregion
 
         #region 构造函数
@@ -215,14 +221,15 @@ namespace ManageTreeDemo.ViewModel
             mainwindow = _mainWindow;
             MainTrees = new ObservableCollection<Node>();
             MenuItems = new ObservableCollection<MenuItem>();
-            TestCreateMenu();
+            CreateMenu();
+            _nodeDetail = new NodeDetails(TestCreateTree());
         }
 
         /// <summary>
         /// 生成右键菜单
         /// </summary>
         /// <returns></returns>
-        public void TestCreateMenu()
+        public void CreateMenu()
         {
             MenuItem _myItem = new MenuItem();
             MenuItem AddItem = new MenuItem();
@@ -269,8 +276,8 @@ namespace ManageTreeDemo.ViewModel
             Node _myBJ = new Node("河南");
             _myT.CreateTreeWithChildre(_myBJ);
             Node _HD = new Node("郑州");
-            
-            
+
+
             Node _CY = new Node("鹤壁");
             Node _FT = new Node("新乡");
             Node _DC = new Node("洛阳");
@@ -340,7 +347,7 @@ namespace ManageTreeDemo.ViewModel
                     if (string.IsNullOrEmpty(fullpath))
                         throw new Exception("打开失败");
                     //Node MainTree = getxmlNodes(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath));
-                    Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath),false);
+                    Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath), false);
                     MainTrees.Clear();
                     MainTrees.Add(_mainTree);
                     return;
@@ -389,7 +396,7 @@ namespace ManageTreeDemo.ViewModel
                     //if (string.IsNullOrEmpty(fullpath))
                     //    throw new Exception("打开失败");
                     //Node MainTree = getxmlNodes(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath));
-                    Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath),false);
+                    Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath), false);
                     MainTrees.Clear();
                     MainTrees.Add(_mainTree);
                     return;

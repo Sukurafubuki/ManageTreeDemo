@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:VM="clr-namespace:ManageTreeDemo.ViewModel"
+        xmlns:local="clr-namespace:ManageTreeDemo.UserControls"
         xmlns:converters="clr-namespace:ManageTreeDemo.Model"
-        xmlns:local="clr-namespace:ManageTreeDemo"
         mc:Ignorable="d"
         Title="ManageTreeDemo" Height="656" Width="1128">
     <Window.Resources>
@@ -24,7 +24,7 @@
     </Window.Resources>
     <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240"></ColumnDefinition>
+            <ColumnDefinition Width="280"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -41,14 +41,17 @@
             <MenuItem Header="其他" FontSize="17"></MenuItem>
         </Menu>
         <TreeView Grid.Row="1" Grid.Column="0" FontSize="17" x:Name="MainTreeView" ItemsSource="{Binding MainTrees}" 
-                  ItemTemplate="{StaticResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown" 
-                  PreviewMouseLeftButtonDown="MainTreeView_PreviewMouseLeftButtonDown" MouseMove="MainTreeView_MouseMove" MouseUp="MainTreeView_MouseUp"
-                  DragEnter="MainTreeView_CheckDropTarget" DragLeave="MainTreeView_CheckDropTarget" DragOver="MainTreeView_CheckDropTarget" Drop="MainTreeView_Drop" AllowDrop="True" >
+                  ItemTemplate="{StaticResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown"
+                  PreviewMouseLeftButtonDown="MainTreeView_PreviewMouseLeftButtonDown" MouseMove="MainTreeView_MouseMove" MouseUp="MainTreeView_MouseUp">
             <TreeView.ContextMenu>
                 <ContextMenu ItemsSource="{Binding MenuItems}">
                 </ContextMenu>
             </TreeView.ContextMenu>
         </TreeView>
         <GridSplitter Grid.Column="1" Grid.Row="1" Background="#F1F1F1" Width="6" VerticalAlignment="Stretch" HorizontalAlignment="Center" ></GridSplitter>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <!--<local:NodeDetails> </local:NodeDetails>-->
+            <ContentControl Content="{Binding _nodeDetail}"></ContentControl>
+        </Grid>
     </Grid>
 </Window>

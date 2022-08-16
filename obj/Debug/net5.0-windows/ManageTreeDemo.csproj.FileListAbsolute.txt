@@ -47,4 +47,6 @@ D:\VSCodes\ManageTreeDemo - 副本\ManageTreeDemo\obj\Debug\net5.0-windows\Manag
 D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\Windows\AddNodeWindow.g.cs
 D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\Windows\AddNodeWindow.baml
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\UserControls\Views\NodeDetails.g.cs
+D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\UserControls\Views\NodeDetails.baml
 D:\VSCodes\ManageTreeDemo\ManageTreeDemo\obj\Debug\net5.0-windows\ManageTreeDemo.csproj.AssemblyReference.cache

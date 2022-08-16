@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\VSCodes\ManageTreeDemo\ManageTreeDemo\App.xaml
-21550557356
+3-2106554848
 
-14543308668
+17266014365
 193-1891726104
-MainWindow.xaml;Windows\AddNodeWindow.xaml;
+MainWindow.xaml;UserControls\Views\NodeDetails.xaml;Windows\AddNodeWindow.xaml;
 
 False
 

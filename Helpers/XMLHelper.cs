@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using ManageTreeDemo.Model;
 using ManageTreeDemo.Common;
+using System.Reflection;
 
 namespace ManageTreeDemo.Helpers
 {
@@ -70,6 +71,12 @@ namespace ManageTreeDemo.Helpers
                 //xml节点路径相同（同位置同名节点，添加属性只能找到第一个节点）
                 //添加节点
                 Insert(xmlpath, site, data.NodeName, "Name", data.NodeName);
+                //遍历对象属性
+                PropertyInfo[] PropertyInfos = data.GetType().GetProperties();
+                foreach (var property in PropertyInfos)
+                {
+                    object obj = property.GetValue(data);
+                }
                 //插入属性
                 Insert(xmlpath, site + "/" + data.NodeName, "", "NodeType", data.NodeType.ToString()) ;
                 //Insert(xmlpath, site + "/" + data.NodeName, "", "NodeContent", data.NodeContent);
@@ -341,7 +348,6 @@ namespace ManageTreeDemo.Helpers
         /// <param name="xmlpath">xml文件绝对路径</param>
         /// <param name="xmlsite">读取根节点 eg:"root/lev1/lev2","root"</param>
         /// <returns>指定类型</returns>
-        /// 该方法要求xml节点标签名与name属性名一致，若不一致，使用重载函数
         public static T GetXmlTreeByRecursion<T> (string xmlpath, string xmlsite) where T:Node,new()
         {
             T node = new T();
@@ -396,6 +402,10 @@ namespace ManageTreeDemo.Helpers
                     node.ChildNodes.Add(GetXmlTreeByRecursion<Node>(xmlpath, node.Site + "/" + childnode.Name.ToString(), false));
                 else
                     node.ChildNodes.Add(GetXmlTreeByRecursion<Model.Directory>(xmlpath, node.Site + "/" + childnode.Name.ToString(), false));
+            }
+            foreach (var childnode in node.ChildNodes)
+            {
+                childnode.ParentNode = node;
             }
             return node;
         }
