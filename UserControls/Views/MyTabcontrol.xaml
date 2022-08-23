@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="ManageTreeDemo.UserControls.Views.MyTabcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManageTreeDemo.UserControls.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="587" d:DesignWidth="826">
+    <Grid Background="AliceBlue">
+        <TabControl Background="{x:Null}" ItemsSource="{Binding TabItems}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Grid>
+                        <TextBlock Text="{Binding title}" Width="100"></TextBlock>
+                        <Button Content="×" Foreground="Red" Width="20" Margin="10"></Button>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding testcontent}"></TextBlock>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>

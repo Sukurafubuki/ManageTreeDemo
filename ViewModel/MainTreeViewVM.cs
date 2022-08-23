@@ -15,6 +15,7 @@ using System.Windows.Input;
 using ManageTreeDemo.Windows;
 using System.Windows.Media;
 using ManageTreeDemo.UserControls;
+using ManageTreeDemo.UserControls.Views;
 
 namespace ManageTreeDemo.ViewModel
 {
@@ -414,7 +415,8 @@ namespace ManageTreeDemo.ViewModel
         #region 双击节点事件
         public void NoedDouble_Click(Node _node)
         {
-            _nodeDetail = new NodeDetails(_node);
+            //_nodeDetail = new NodeDetails(_node);
+            _nodeDetail = new MyTabcontrol();
         }
         #endregion
     }
