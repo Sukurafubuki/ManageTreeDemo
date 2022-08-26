@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using ManageTreeDemo.Model;
 using System.Reflection;
+using System.Windows.Media;
 
 namespace ManageTreeDemo.UserControls.ViewModel
 {
@@ -38,6 +39,7 @@ namespace ManageTreeDemo.UserControls.ViewModel
                     txtblk.Text += prop.Name;
                     txtblk.Text += " : " + prop.GetValue(_node);
                     txtblk.FontSize = 20;
+                    txtblk.Foreground = new SolidColorBrush(Colors.Black);
                     txtblk.Margin = new System.Windows.Thickness(20, 20, 20, 20);
                     TextBlocks.Add(txtblk);
                 }

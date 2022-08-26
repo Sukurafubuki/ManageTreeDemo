@@ -6,23 +6,11 @@
              xmlns:local="clr-namespace:ManageTreeDemo.UserControls.Views"
              mc:Ignorable="d" 
              d:DesignHeight="587" d:DesignWidth="826">
-    <Grid Background="AliceBlue">
-        <TabControl Background="{x:Null}" ItemsSource="{Binding TabItems}">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Grid>
-                        <TextBlock Text="{Binding title}" Width="100"></TextBlock>
-                        <Button Content="×" Foreground="Red" Width="20" Margin="10"></Button>
-                        </Grid>
-                    </StackPanel>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding testcontent}"></TextBlock>
-                </DataTemplate>
-            </TabControl.ContentTemplate>
+    <Grid >
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <TabControl Name="TabControl1" Background="{x:Null}" Tag="100">
         </TabControl>
     </Grid>
 </UserControl>

@@ -52,6 +52,11 @@ namespace ManageTreeDemo.Windows
         /// <param name="e"></param>
         private void confirmbtn_Click(object sender, RoutedEventArgs e)
         {
+            if (NodeNametxb.Text[0] >= '0' && NodeNametxb.Text[0] <= '9')
+            {
+                MessageBox.Show("节点名不能以0-9数字开头");
+                return;
+            }
             if (NodetypeCmb.SelectedIndex == 0)
             {
                 string str = Guid.NewGuid().ToString();

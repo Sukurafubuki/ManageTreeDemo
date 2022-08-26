@@ -173,6 +173,7 @@ namespace ManageTreeDemo.ViewModel
             get;
             set;
         }
+        public ObservableCollection<TreeViewItem> treeViewItems;
         /// <summary>
         /// 主窗体实例，弹出窗体父窗体对象
         /// </summary>
@@ -207,11 +208,11 @@ namespace ManageTreeDemo.ViewModel
             set;
         }
 
-        private object nodedetail;
+        private MyTabcontrol _nodeTabs = new MyTabcontrol();
         /// <summary>
         /// 节点详情，绑定用户控件
         /// </summary>
-        public object _nodeDetail { get { return nodedetail; } set { nodedetail = value;OnPropertyChanged("_nodeDetail"); } }
+        public MyTabcontrol NodeTabs { get { return _nodeTabs; } set { _nodeTabs = value;OnPropertyChanged("_nodeDetail"); } }
         #endregion
 
         #region 构造函数
@@ -351,7 +352,7 @@ namespace ManageTreeDemo.ViewModel
                     Node _mainTree = XmlHelper.GetXmlTreeByRecursion<Node>(fullpath, System.IO.Path.GetFileNameWithoutExtension(fullpath), false);
                     MainTrees.Clear();
                     MainTrees.Add(_mainTree);
-                    return;
+                    return ;
                 }
                 MessageBox.Show("未选择有效文件");
             }
@@ -416,7 +417,7 @@ namespace ManageTreeDemo.ViewModel
         public void NoedDouble_Click(Node _node)
         {
             //_nodeDetail = new NodeDetails(_node);
-            _nodeDetail = new MyTabcontrol();
+            NodeTabs.Nodeload(_node);
         }
         #endregion
     }

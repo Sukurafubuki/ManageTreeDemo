@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Data;
 using System.Globalization;
+using System.Windows.Controls;
 
 namespace ManageTreeDemo.Model
 {

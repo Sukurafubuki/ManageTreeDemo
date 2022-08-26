@@ -11,7 +11,7 @@
     <Window.Resources>
         <converters:StringToImageSourceConverter x:Key="MyImageConverter"></converters:StringToImageSourceConverter>
         <HierarchicalDataTemplate x:Key="MyTreeItemTemplate"  DataType="{x:Type VM:MainTreeViewVM}" ItemsSource="{Binding Path=ChildNodes,Mode=OneWay}">
-            <StackPanel x:Name="My_SP"  Orientation="Horizontal" Margin="2,2,0,2">
+            <StackPanel x:Name="My_SP"  Orientation="Horizontal" Margin="2,2,0,2" >
                 <Image VerticalAlignment="Center" Source="{Binding Path=NodeIconPath,Converter={StaticResource MyImageConverter}}"/>
                 <TextBlock  Text="{Binding Path=NodeName,Mode=OneWay}" Margin="5,2,0,2" Width="200" Height="22"/>
                 <TextBox Name="Renametxb" Text="{Binding Path=NodeName,Mode=OneWay}"  Visibility="Collapsed" HorizontalAlignment="Center" Margin="-200,0,0,0" Height="22" Width="200" LostFocus="Renametxb_LostFocus"></TextBox>
@@ -19,8 +19,11 @@
         </HierarchicalDataTemplate>
         <Style x:Key="TreeViewItemStyle" TargetType="{x:Type TreeViewItem}">
             <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
             <!--<Setter Property="IsSelected" Value="{Binding Path=IsSelected,Mode=TwoWay}"/>-->
         </Style>
+        <converters:StringToImageSourceConverter x:Key="MyImageConverter1"/>
     </Window.Resources>
     <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
@@ -33,6 +36,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#F1F1F1">
+            <!--<Menu.ItemContainerStyle>
+                <Style TargetType="{x:Type MenuItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </Menu.ItemContainerStyle>-->
             <MenuItem Header="文件" FontSize="17">
                 <MenuItem Header="新建工程" FontSize="17" Width="170"  Padding="0" Click="NewProgram_Click"></MenuItem>
                 <MenuItem Header="打开工程" FontSize="17" Width="170"  Padding="0" Click="OpenProgram_Click"></MenuItem>
@@ -41,17 +50,23 @@
             <MenuItem Header="其他" FontSize="17"></MenuItem>
         </Menu>
         <TreeView Grid.Row="1" Grid.Column="0" FontSize="17" x:Name="MainTreeView" ItemsSource="{Binding MainTrees}" 
-                  ItemTemplate="{StaticResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown"
+                  ItemTemplate="{DynamicResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown"
                   PreviewMouseLeftButtonDown="MainTreeView_PreviewMouseLeftButtonDown" MouseMove="MainTreeView_MouseMove" MouseUp="MainTreeView_MouseUp" MouseDoubleClick="MainTreeView_MouseDoubleClick" >
             <TreeView.ContextMenu>
                 <ContextMenu ItemsSource="{Binding MenuItems}">
+                    <!--<ContextMenu.ItemContainerStyle>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ContextMenu.ItemContainerStyle>-->
                 </ContextMenu>
             </TreeView.ContextMenu>
         </TreeView>
         <GridSplitter Grid.Column="1" Grid.Row="1" Background="#F1F1F1" Width="6" VerticalAlignment="Stretch" HorizontalAlignment="Center" ></GridSplitter>
         <Grid Grid.Row="1" Grid.Column="2">
             <!--<local:NodeDetails> </local:NodeDetails>-->
-            <ContentControl Content="{Binding _nodeDetail}"></ContentControl>
+            <ContentControl Content="{Binding NodeTabs}"></ContentControl>
         </Grid>
     </Grid>
 </Window>

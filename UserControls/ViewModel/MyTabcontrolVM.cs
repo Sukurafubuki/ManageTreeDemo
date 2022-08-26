@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ManageTreeDemo.Common;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using ManageTreeDemo.UserControls.Views;
 
 namespace ManageTreeDemo.UserControls.ViewModel
 {
@@ -14,32 +15,39 @@ namespace ManageTreeDemo.UserControls.ViewModel
         /// <summary>
         /// 选项卡集合
         /// </summary>
-        public ObservableCollection<testitem> TabItems { get; set; }
+        public ObservableCollection<MyTabItemWithClose> TabItems { get; set; }
 
         /// <summary>
         /// 构造函数
         /// </summary>
         public MyTabcontrolVM()
         {
-            TabItems = new ObservableCollection<testitem>();
-            testitem tab1 = new testitem();
-            tab1.title = "test1";
-            tab1.testcontent = "aaaaaaaaa";
-            TabItems.Add(tab1);
-            testitem tab2 = new testitem();
-            tab2.title = "test2";
-            tab2.testcontent = "bbbbbbbbbbb";
-            TabItems.Add(tab2);
-            testitem tab3 = new testitem();
-            tab3.title = "test2";
-            tab3.testcontent = "cccccccccccccc";
-            TabItems.Add(tab3);
-            TabItems.Add(tab3);
-            TabItems.Add(tab3);
-            TabItems.Add(tab3);
-            TabItems.Add(tab3);
-            TabItems.Add(tab3);
-            TabItems.Add(tab3);
+            //TabItems = new ObservableCollection<MyTabItemWithClose>();
+            //MyTabItemWithClose item = new MyTabItemWithClose("test");
+            //TabItems.Add(item);
+            //TabItems.Add(item);
+            //TabItems.Add(item);
+            //TabItems.Add(item);
+            //TabItems.Add(item);
+            //TabItems = new ObservableCollection<testitem>();
+            //testitem tab1 = new testitem();
+            //tab1.title = "test1";
+            //tab1.testcontent = "aaaaaaaaa";
+            //TabItems.Add(tab1);
+            //testitem tab2 = new testitem();
+            //tab2.title = "test2";
+            //tab2.testcontent = "bbbbbbbbbbb";
+            //TabItems.Add(tab2);
+            //testitem tab3 = new testitem();
+            //tab3.title = "test2";
+            //tab3.testcontent = "cccccccccccccc";
+            //TabItems.Add(tab3);
+            //TabItems.Add(tab3);
+            //TabItems.Add(tab3);
+            //TabItems.Add(tab3);
+            //TabItems.Add(tab3);
+            //TabItems.Add(tab3);
+            //TabItems.Add(tab3);
             //TabItems = new ObservableCollection<TabItem>();
             //TabItem tab2 = new TabItem();
             //tab2.Header = "test2";

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManageTreeDemo.UserControls.ViewModel;
+using ManageTreeDemo.Model;
 
 namespace ManageTreeDemo.UserControls.Views
 {
@@ -21,10 +22,42 @@ namespace ManageTreeDemo.UserControls.Views
     /// </summary>
     public partial class MyTabcontrol : UserControl
     {
+        /// <summary>
+        /// 已打开的节点集合
+        /// </summary>
+        public List<Node> OpenedNodes = new List<Node>();
+
         public MyTabcontrol()
         {
             InitializeComponent();
-            DataContext = new MyTabcontrolVM();
+        }
+
+        /// <summary>
+        /// tabcontrol响应节点点击事件
+        /// </summary>
+        /// <param name="_node"></param>
+        public void Nodeload(Node _node)
+        {
+            if (OpenedNodes.Contains(_node))
+            {
+                //tabcontrol中item与openednodes中node增删动作一致，索引一致
+                TabControl1.SelectedIndex = OpenedNodes.IndexOf(_node);
+            }
+            else
+            {
+                MyTabItemWithClose item = new MyTabItemWithClose(_node);
+                item.Content = new NodeDetails(_node);
+                //绑定事件触发委托
+                item._itemclose += this.itemclose;
+                TabControl1.Items.Add(item);
+                OpenedNodes.Add(_node);
+                TabControl1.SelectedItem = item;
+            }
+        }
+
+        private void itemclose(Node _node)
+        {
+            OpenedNodes.Remove(_node);
         }
     }
 }

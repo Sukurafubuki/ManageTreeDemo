@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using ManageTreeDemo.Model;
 using ManageTreeDemo.Common;
 using System.Reflection;
+using System.Windows;
 
 namespace ManageTreeDemo.Helpers
 {
@@ -135,7 +136,10 @@ namespace ManageTreeDemo.Helpers
                 }
                 doc.Save(path);
             }
-            catch { }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message); 
+            }
         }
         #endregion
         #region insert'
@@ -246,8 +250,9 @@ namespace ManageTreeDemo.Helpers
                 else
                     xe.RemoveAttribute(attribute);
                 doc.Save(path);
+                
             }
-            catch { }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
         #endregion
 
@@ -388,6 +393,7 @@ namespace ManageTreeDemo.Helpers
             XmlReader reader = XmlReader.Create(xmlpath, settings);
             doc.Load(reader);
             XmlNode xmlnode = doc.SelectSingleNode(xmlsite);
+            reader.Close();
             XmlElement xmlElement = (XmlElement)xmlnode;
             ///赋值节点信息
             node.NodeName = xmlElement.GetAttribute("Name").ToString();

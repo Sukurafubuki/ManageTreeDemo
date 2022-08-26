@@ -19,6 +19,7 @@ using ManageTreeDemo.Model;
 using System.Xml;
 using ManageTreeDemo.Windows;
 using ManageTreeDemo.Common;
+using ManageTreeDemo.UserControls.Views;
 
 namespace ManageTreeDemo
 {
@@ -27,10 +28,20 @@ namespace ManageTreeDemo
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region 取消鼠标双击展开/折叠
+        public int MouseClickCount = 0;
+        #endregion
+        //视图数据
         MainTreeViewVM _maintreeVM;
+        #region 树节点拖拽相关
+        //初始位置
         Point _lastMouseDown;
+        //所移动节点
         Node moveTreeItem;
+        //移动信号量
         bool IsDrop = false;
+        #endregion
+
         public static clipper Clipper = new clipper(false);
 
         /// <summary>
@@ -142,6 +153,8 @@ namespace ManageTreeDemo
                     moveTreeItem = (Node)ele.DataContext;
                 }
             }
+            this.MouseClickCount = e.ClickCount;
+            
         }
 
         private void MainTreeView_MouseMove(object sender, MouseEventArgs e)
@@ -190,17 +203,22 @@ namespace ManageTreeDemo
                         ClearDrops();
                         return;
                     }
-                    if (targetTreeItem.NodeName != moveTreeItem.NodeName)
+                    if (targetTreeItem != moveTreeItem&&!isChildNode(targetTreeItem,moveTreeItem)&&moveTreeItem.ParentNode!= targetTreeItem)
                     {
                         //移动节点
                         //moveTreeItem.ParentNode.ChildNodes.Remove(moveTreeItem);
                         //targetTreeItem.ChildNodes.Add(moveTreeItem);
                         //moveTreeItem.ParentNode = targetTreeItem;
                         #region 移动节点
-                        //删除源节点
-                        XmlHelper.Delete(MainTreeViewVM.fullpath,moveTreeItem.Site,"");
                         moveTreeItem.ParentNode = targetTreeItem;
                         XmlHelper.InsertByRecursion(MainTreeViewVM.fullpath, targetTreeItem.Site, moveTreeItem);
+                        if (_maintreeVM.NodeTabs.OpenedNodes.Contains(moveTreeItem))
+                        {
+                            _maintreeVM.NoedDouble_Click(moveTreeItem);
+                            (_maintreeVM.NodeTabs.TabControl1.SelectedItem as MyTabItemWithClose).btn_Close_Click();
+                        }
+                        //删除源节点
+                        XmlHelper.Delete(MainTreeViewVM.fullpath, moveTreeItem.Site, "");
                         _maintreeVM.RefTree();
                         #endregion
                     }
@@ -218,12 +236,41 @@ namespace ManageTreeDemo
             IsDrop = false;
             this.MainTreeView.Cursor = Cursors.Arrow;
         }
+        /// <summary>
+        /// target是否是move的子节点
+        /// </summary>
+        /// <param name="targetNode"></param>
+        /// <param name="moveNode"></param>
+        /// <returns></returns>
+        /// 通常父节点无法移动到子节点下
+        private bool isChildNode(Node targetNode, Node moveNode)
+        {
+            if (moveNode.ChildNodes.Count > 0)
+            {
+                if (moveNode.ChildNodes.Contains(targetNode))
+                    return true;
+                else
+                {
+                    foreach (Node temp in moveTreeItem.ChildNodes)
+                    {
+                        return isChildNode(targetNode, temp);
+                    }
+                }
+            }
+            return false;
+        }
 
         private void MainTreeView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if ((sender as TreeView).SelectedItem != null)
             {
                 _maintreeVM.NoedDouble_Click((sender as TreeView).SelectedItem as Node);
+                //*************************************////////////////////
+                //视觉树判断双击触发源，如果是节点文本控件，赋值更改isexpanded属性一次，控件封装委托再更改一次，结果不变
+                DependencyObject source = e.OriginalSource as DependencyObject;
+                while (source != null && source.GetType() != typeof(TreeViewItem))
+                    source = System.Windows.Media.VisualTreeHelper.GetParent(source);
+                (source as TreeViewItem).IsExpanded = !(source as TreeViewItem).IsExpanded;
             }
         }
         //private Node getxmlNodes(string xmlpath,string xmlsite)

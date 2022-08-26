@@ -10,6 +10,9 @@
     <Compile Update="UserControls\Views\MyTabcontrol.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\Views\MyTabItemWithClose.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\Views\NodeDetails.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Views\MyTabcontrol.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\Views\MyTabItemWithClose.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Views\NodeDetails.xaml">
