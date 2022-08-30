@@ -42,14 +42,15 @@
                     <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                 </Style>
             </Menu.ItemContainerStyle>-->
-            <MenuItem Header="文件" FontSize="17">
+            <MenuItem Header="文件" Margin="0,0,10,0" FontSize="17">
                 <MenuItem Header="新建工程" FontSize="17" Width="170"  Padding="0" Click="NewProgram_Click"></MenuItem>
                 <MenuItem Header="打开工程" FontSize="17" Width="170"  Padding="0" Click="OpenProgram_Click"></MenuItem>
                 <MenuItem Header="刷新" FontSize="17" Width="170"  Padding="0" Click="RefTest_Click"></MenuItem>
             </MenuItem>
-            <MenuItem Header="其他" FontSize="17"></MenuItem>
+            <MenuItem Header="test" FontSize="17" Margin="0,0,10,0" Click="testBtn_Click"></MenuItem>
+            <MenuItem Header="其他" FontSize="17" Margin="0,0,10,0"></MenuItem>
         </Menu>
-        <TreeView Grid.Row="1" Grid.Column="0" FontSize="17" x:Name="MainTreeView" ItemsSource="{Binding MainTrees}" 
+        <TreeView Grid.Row="1" Grid.Column="0" FontSize="17" x:Name="MainTreeView" ItemsSource="{Binding MainTrees}"
                   ItemTemplate="{DynamicResource MyTreeItemTemplate}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" PreviewMouseRightButtonDown="MainTreeView_PreviewMouseRightButtonDown"
                   PreviewMouseLeftButtonDown="MainTreeView_PreviewMouseLeftButtonDown" MouseMove="MainTreeView_MouseMove" MouseUp="MainTreeView_MouseUp" MouseDoubleClick="MainTreeView_MouseDoubleClick" >
             <TreeView.ContextMenu>

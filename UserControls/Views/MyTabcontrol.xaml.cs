@@ -22,42 +22,111 @@ namespace ManageTreeDemo.UserControls.Views
     /// </summary>
     public partial class MyTabcontrol : UserControl
     {
-        /// <summary>
-        /// 已打开的节点集合
-        /// </summary>
-        public List<Node> OpenedNodes = new List<Node>();
+        #region 选项卡拖拽相关
+        //初始位置
+        Point _lastMouseDown;
+        //所移动节点
+        MyTabItemWithClose moveTabItem;
+        //移动信号量
+        bool IsDrop = false;
+        #endregion
+
+        private MyTabcontrolVM _myTabcontrolVM;
+        public MyTabcontrolVM MyTabcontrolVM
+        { 
+            get { return _myTabcontrolVM; }
+            set { _myTabcontrolVM = value; } 
+        }
 
         public MyTabcontrol()
         {
             InitializeComponent();
+            _myTabcontrolVM = new MyTabcontrolVM(this);
+            this.DataContext = _myTabcontrolVM;
         }
 
+        #region 选项卡拖拽
+        private void TabControl1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var ele = e.OriginalSource as FrameworkElement;
+            if (ele != null)
+            {
+                //视觉树获取触发的mytabitemwithclose控件
+                DependencyObject source = e.OriginalSource as DependencyObject;
+                while (source != null && source.GetType() != typeof(MyTabItemWithClose) && source.GetType() != typeof(MyTabcontrol))
+                    source = System.Windows.Media.VisualTreeHelper.GetParent(source);
+                //仅当触发控件为合理控件时，做拖动准备
+                if (source.GetType() == typeof(MyTabItemWithClose))
+                {
+                    //MessageBox.Show("yes");
+                    _lastMouseDown = e.GetPosition(TabControl1);
+                    //视觉树获取触发的mytabitemwithclose控件
+                    moveTabItem = source as MyTabItemWithClose;
+                }
+            }
+        }
+
+        private void TabControl1_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    Point currentPosition = e.GetPosition(TabControl1);
+                    if ((Math.Abs(currentPosition.X - _lastMouseDown.X) > 2.0) || (Math.Abs(currentPosition.Y - _lastMouseDown.Y) > 2.0))
+                    {
+                        if (!IsDrop)
+                        {
+                            if (moveTabItem != null)
+                            {
+                                IsDrop = true;
+                                this.TabControl1.Cursor = Cursors.Hand;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void TabControl1_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (moveTabItem == null)
+            {
+                return;
+            }
+            var ele = e.OriginalSource as FrameworkElement;
+            if (ele != null)
+            {
+                //视觉树获取触发的mytabitemwithclose控件
+                DependencyObject source = e.OriginalSource as DependencyObject;
+                while (source != null && source.GetType() != typeof(MyTabItemWithClose) && source.GetType() != typeof(MyTabcontrol))
+                    source = System.Windows.Media.VisualTreeHelper.GetParent(source);
+                if (source.GetType() == typeof(MyTabItemWithClose))
+                {
+                    var targetTabitem = source as MyTabItemWithClose;
+                    if (targetTabitem != moveTabItem)
+                    {
+                        #region 移动选项卡
+                        TabControl1.Items.Remove(moveTabItem);
+                        TabControl1.Items.Insert(TabControl1.Items.IndexOf(targetTabitem), moveTabItem);
+                        #endregion
+                    }
+                }
+            }
+            ClearDrops();
+        }
         /// <summary>
-        /// tabcontrol响应节点点击事件
+        /// 还原拖拽信号量
         /// </summary>
-        /// <param name="_node"></param>
-        public void Nodeload(Node _node)
+        private void ClearDrops()
         {
-            if (OpenedNodes.Contains(_node))
-            {
-                //tabcontrol中item与openednodes中node增删动作一致，索引一致
-                TabControl1.SelectedIndex = OpenedNodes.IndexOf(_node);
-            }
-            else
-            {
-                MyTabItemWithClose item = new MyTabItemWithClose(_node);
-                item.Content = new NodeDetails(_node);
-                //绑定事件触发委托
-                item._itemclose += this.itemclose;
-                TabControl1.Items.Add(item);
-                OpenedNodes.Add(_node);
-                TabControl1.SelectedItem = item;
-            }
+            moveTabItem = null;
+            IsDrop = false;
+            this.TabControl1.Cursor = Cursors.Arrow;
         }
-
-        private void itemclose(Node _node)
-        {
-            OpenedNodes.Remove(_node);
-        }
+        #endregion
     }
 }

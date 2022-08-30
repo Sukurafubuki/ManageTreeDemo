@@ -7,6 +7,18 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UserControls\Canvas\Circle.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\Canvas\Line.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\Canvas\Rectangle.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\Canvas\Rhombus.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\Views\MyTabcontrol.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -14,6 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\Views\NodeDetails.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\Views\TestCanvas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\AddNodeWindow.xaml.cs">
@@ -24,6 +39,18 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UserControls\Canvas\Circle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\Canvas\Line.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\Canvas\Rectangle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\Canvas\Rhombus.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserControls\Views\MyTabcontrol.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -31,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Views\NodeDetails.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\Views\TestCanvas.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AddNodeWindow.xaml">

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ManageTreeDemo.Model;
+using ManageTreeDemo.UserControls.ViewModel;
 
 namespace ManageTreeDemo.UserControls.Views
 {
@@ -30,8 +31,9 @@ namespace ManageTreeDemo.UserControls.Views
         public  Itemclose _itemclose;
         private Node Item_Node;
         #endregion
-        public MyTabItemWithClose(Node _node)
+        public MyTabItemWithClose(Node _node,MyTabcontrolVM _parent)
         {
+            Parent = _parent;
             Item_Node = _node;
             this.Header = _node.NodeName;
             ToolTip = _node.NodeName;
@@ -45,6 +47,8 @@ namespace ManageTreeDemo.UserControls.Views
         /// 父级TabControl
         /// </summary>
         private TabControl m_Parent;
+
+        private new MyTabcontrolVM Parent;
         /// <summary>
         /// 约定的宽度
         /// </summary>
@@ -62,6 +66,8 @@ namespace ManageTreeDemo.UserControls.Views
             m_Parent = FindParentTabControl(this);
             if (m_Parent != null)
                 Load();
+            if (Parent != null)
+                Load();
         }
         #endregion
         #region 关闭按钮
@@ -70,12 +76,14 @@ namespace ManageTreeDemo.UserControls.Views
         /// </summary>
         private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (m_Parent == null)
+
+            //if (m_Parent == null)
+            //    return;
+            if (Parent == null)
                 return;
 
             //移除自身
-            m_Parent.Items.Remove(this);
+            Parent.TabItems.Remove(this);
             if (_itemclose != null)
                 _itemclose(Item_Node);
             //移除事件
@@ -101,7 +109,9 @@ namespace ManageTreeDemo.UserControls.Views
         public void btn_Close_Click()
         {
 
-            if (m_Parent == null)
+            //if (m_Parent == null)
+            //    return;
+            if (Parent == null)
                 return;
 
             //移除自身

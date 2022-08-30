@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="ManageTreeDemo.UserControls.Canvas.Line"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManageTreeDemo.UserControls.Canvas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas>
+        <local:MyBaseThumb x:Name="s" Canvas.Left="0" Canvas.Top="0"  Width="100" Height="100" Background="AliceBlue" IsEnableInput="False">
+            <local:MyBaseThumb.Template>
+                <ControlTemplate>
+                    <Grid>
+
+                        <Line X1="0" Y1="0" X2="0" Y2="100" Stroke="Black" StrokeThickness="2" HorizontalAlignment="Center" >
+
+                        </Line>
+                        <Line X1="-5" Y1="90" X2="1" Y2="100" StrokeThickness="2" Stroke="Black" HorizontalAlignment="Center"></Line>
+                        <Line X1="10" Y1="90" X2="4" Y2="100" StrokeThickness="2" Stroke="Black" HorizontalAlignment="Center"></Line>
+                        <TextBox VerticalAlignment="Center" Height="30" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center" MinLines="1" MaxLines="2" IsEnabled="{Binding ElementName=s, Path=IsEnableInput}" Opacity="0" Visibility="{Binding ElementName=s, Path=IsEnableInput}"></TextBox>
+                    </Grid>
+                </ControlTemplate>
+            </local:MyBaseThumb.Template>
+
+        </local:MyBaseThumb>
+    </Canvas>
+</UserControl>

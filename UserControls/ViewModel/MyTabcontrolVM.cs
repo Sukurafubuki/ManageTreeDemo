@@ -7,73 +7,81 @@ using ManageTreeDemo.Common;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using ManageTreeDemo.UserControls.Views;
+using ManageTreeDemo.Model;
 
 namespace ManageTreeDemo.UserControls.ViewModel
 {
     public class MyTabcontrolVM:NotifyPropertyBase
     {
         /// <summary>
+        /// 模型窗体视图实例
+        /// </summary>
+        public MyTabcontrol MyTabcontrol { get; set; }
+        /// <summary>
         /// 选项卡集合
         /// </summary>
         public ObservableCollection<MyTabItemWithClose> TabItems { get; set; }
+        /// <summary>
+        /// 已打开的节点集合
+        /// </summary>
+        public List<Node> OpenedNodes = new List<Node>();
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        public MyTabcontrolVM()
+        public MyTabcontrolVM(MyTabcontrol _myTabcontrol)
         {
-            //TabItems = new ObservableCollection<MyTabItemWithClose>();
-            //MyTabItemWithClose item = new MyTabItemWithClose("test");
-            //TabItems.Add(item);
-            //TabItems.Add(item);
-            //TabItems.Add(item);
-            //TabItems.Add(item);
-            //TabItems.Add(item);
-            //TabItems = new ObservableCollection<testitem>();
-            //testitem tab1 = new testitem();
-            //tab1.title = "test1";
-            //tab1.testcontent = "aaaaaaaaa";
-            //TabItems.Add(tab1);
-            //testitem tab2 = new testitem();
-            //tab2.title = "test2";
-            //tab2.testcontent = "bbbbbbbbbbb";
-            //TabItems.Add(tab2);
-            //testitem tab3 = new testitem();
-            //tab3.title = "test2";
-            //tab3.testcontent = "cccccccccccccc";
-            //TabItems.Add(tab3);
-            //TabItems.Add(tab3);
-            //TabItems.Add(tab3);
-            //TabItems.Add(tab3);
-            //TabItems.Add(tab3);
-            //TabItems.Add(tab3);
-            //TabItems.Add(tab3);
-            //TabItems = new ObservableCollection<TabItem>();
-            //TabItem tab2 = new TabItem();
-            //tab2.Header = "test2";
-            //TabItems.Add(tab2);
-            //TabItem tab3 = new TabItem();
-            //tab3.Header = "test3";
-            //TabItems.Add(tab3);
+            TabItems = new ObservableCollection<MyTabItemWithClose>();
+            MyTabcontrol = _myTabcontrol;
         }
 
+        #region 初始化测试数据
         /// <summary>
         /// 初始化测试数据
         /// </summary>
         private void testinit()
         {
-            //TabItem tab2 = new TabItem();
-            //tab1.Header = "test2";
+            //MyTabItemWithClose tab1 = new MyTabItemWithClose();
+            //tab1.Header = "test1";
+            //TabItems.Add(tab1);
+            //MyTabItemWithClose tab2 = new MyTabItemWithClose();
+            //tab2.Header = "test2";
             //TabItems.Add(tab2);
-            //TabItem tab3 = new TabItem();
-            //tab1.Header = "test3";
-            //TabItems.Add(tab3);
         }
+        #endregion
 
-        public class testitem
-        { 
-            public string title { get; set; }
-            public string testcontent { get; set; }
+        #region 打开节点
+        /// <summary>
+        /// 打开节点方法
+        /// </summary>
+        /// <param name="_node">点击节点</param>
+        public void OpenNode(Node _node)
+        {
+            if (OpenedNodes.Contains(_node))
+            {
+                //tabcontrol中item与openednodes中node增删动作一致，索引一致
+                MyTabcontrol.TabControl1.SelectedIndex = OpenedNodes.IndexOf(_node);
+            }
+            else
+            {
+                MyTabItemWithClose item = new MyTabItemWithClose(_node,this);
+                item.Content = new NodeDetails(_node);
+                //绑定事件触发委托
+                item._itemclose += this.itemclose;
+                //MyTabcontrol.TabControl1.Items.Add(item);
+                TabItems.Add(item);
+                OpenedNodes.Add(_node);
+                MyTabcontrol.TabControl1.SelectedItem = item;
+            }
         }
+        /// <summary>
+        /// 同步已打开节点集合
+        /// </summary>
+        /// <param name="_node"></param>
+        private void itemclose(Node _node)
+        {
+            OpenedNodes.Remove(_node);
+        }
+        #endregion
     }
 }

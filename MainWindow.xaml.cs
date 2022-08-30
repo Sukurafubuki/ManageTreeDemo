@@ -212,7 +212,7 @@ namespace ManageTreeDemo
                         #region 移动节点
                         moveTreeItem.ParentNode = targetTreeItem;
                         XmlHelper.InsertByRecursion(MainTreeViewVM.fullpath, targetTreeItem.Site, moveTreeItem);
-                        if (_maintreeVM.NodeTabs.OpenedNodes.Contains(moveTreeItem))
+                        if (_maintreeVM.NodeTabs.MyTabcontrolVM.OpenedNodes.Contains(moveTreeItem))
                         {
                             _maintreeVM.NoedDouble_Click(moveTreeItem);
                             (_maintreeVM.NodeTabs.TabControl1.SelectedItem as MyTabItemWithClose).btn_Close_Click();
@@ -242,7 +242,7 @@ namespace ManageTreeDemo
         /// <param name="targetNode"></param>
         /// <param name="moveNode"></param>
         /// <returns></returns>
-        /// 通常父节点无法移动到子节点下
+        /// 规范条件:父节点无法移动到子节点下
         private bool isChildNode(Node targetNode, Node moveNode)
         {
             if (moveNode.ChildNodes.Count > 0)
@@ -266,12 +266,20 @@ namespace ManageTreeDemo
             {
                 _maintreeVM.NoedDouble_Click((sender as TreeView).SelectedItem as Node);
                 //*************************************////////////////////
+                //treeview默认节点双击展开/关闭
                 //视觉树判断双击触发源，如果是节点文本控件，赋值更改isexpanded属性一次，控件封装委托再更改一次，结果不变
                 DependencyObject source = e.OriginalSource as DependencyObject;
                 while (source != null && source.GetType() != typeof(TreeViewItem))
                     source = System.Windows.Media.VisualTreeHelper.GetParent(source);
                 (source as TreeViewItem).IsExpanded = !(source as TreeViewItem).IsExpanded;
             }
+        }
+
+        private void testBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MyTabItemWithClose test = new MyTabItemWithClose(new Node("test"),_maintreeVM.NodeTabs.MyTabcontrolVM);
+            test.Content = new TestCanvas();
+            _maintreeVM.NodeTabs.MyTabcontrolVM.TabItems.Add(test);
         }
         //private Node getxmlNodes(string xmlpath,string xmlsite)
         //{

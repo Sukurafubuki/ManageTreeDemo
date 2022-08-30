@@ -212,7 +212,7 @@ namespace ManageTreeDemo.ViewModel
         /// <summary>
         /// 节点详情，绑定用户控件
         /// </summary>
-        public MyTabcontrol NodeTabs { get { return _nodeTabs; } set { _nodeTabs = value;OnPropertyChanged("_nodeDetail"); } }
+        public MyTabcontrol NodeTabs { get { return _nodeTabs; } set { _nodeTabs = value;OnPropertyChanged("_nodeTabs"); } }
         #endregion
 
         #region 构造函数
@@ -417,7 +417,7 @@ namespace ManageTreeDemo.ViewModel
         public void NoedDouble_Click(Node _node)
         {
             //_nodeDetail = new NodeDetails(_node);
-            NodeTabs.Nodeload(_node);
+            NodeTabs.MyTabcontrolVM.OpenNode(_node);
         }
         #endregion
     }

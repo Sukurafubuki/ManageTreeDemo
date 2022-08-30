@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ManageTreeDemo.UserControls.Views"
+             xmlns:VM="clr-namespace:ManageTreeDemo.UserControls.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="587" d:DesignWidth="826">
     <Grid >
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
-        <TabControl Name="TabControl1" Background="{x:Null}" Tag="100">
+        <TabControl Name="TabControl1" Background="{x:Null}" Tag="100" ItemsSource="{Binding TabItems}"  PreviewMouseLeftButtonDown="TabControl1_PreviewMouseLeftButtonDown" MouseMove="TabControl1_MouseMove" MouseUp="TabControl1_MouseUp" >
         </TabControl>
     </Grid>
 </UserControl>
