@@ -275,11 +275,15 @@ namespace ManageTreeDemo
             }
         }
 
+        /// <summary>
+        /// 菜单栏-test按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void testBtn_Click(object sender, RoutedEventArgs e)
         {
-            MyTabItemWithClose test = new MyTabItemWithClose(new Node("test"),_maintreeVM.NodeTabs.MyTabcontrolVM);
-            test.Content = new TestCanvas();
-            _maintreeVM.NodeTabs.MyTabcontrolVM.TabItems.Add(test);
+            Node canvasNode = new Node("canvas");
+            _maintreeVM.NoedDouble_Click(canvasNode);
         }
         //private Node getxmlNodes(string xmlpath,string xmlsite)
         //{

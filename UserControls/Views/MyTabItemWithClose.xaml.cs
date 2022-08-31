@@ -29,7 +29,7 @@ namespace ManageTreeDemo.UserControls.Views
         /// <param name="_node"></param>
         public delegate void Itemclose(Node _node);
         public  Itemclose _itemclose;
-        private Node Item_Node;
+        public Node Item_Node;
         #endregion
         public MyTabItemWithClose(Node _node,MyTabcontrolVM _parent)
         {

@@ -57,15 +57,15 @@ namespace ManageTreeDemo.UserControls.ViewModel
         /// <param name="_node">点击节点</param>
         public void OpenNode(Node _node)
         {
-            if (OpenedNodes.Contains(_node))
+            if (OpenedNodes.Exists(x=>x.NodeName==_node.NodeName))
             {
                 //tabcontrol中item与openednodes中node增删动作一致，索引一致
-                MyTabcontrol.TabControl1.SelectedIndex = OpenedNodes.IndexOf(_node);
+                MyTabcontrol.TabControl1.SelectedIndex = OpenedNodes.IndexOf(OpenedNodes.Find(x => x.NodeName == _node.NodeName));
             }
             else
             {
                 MyTabItemWithClose item = new MyTabItemWithClose(_node,this);
-                item.Content = new NodeDetails(_node);
+                item.Content = _node.NodeName=="canvas"? new TestCanvas(): new NodeDetails(_node);
                 //绑定事件触发委托
                 item._itemclose += this.itemclose;
                 //MyTabcontrol.TabControl1.Items.Add(item);

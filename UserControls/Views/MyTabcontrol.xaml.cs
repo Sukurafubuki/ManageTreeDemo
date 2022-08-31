@@ -110,8 +110,11 @@ namespace ManageTreeDemo.UserControls.Views
                     if (targetTabitem != moveTabItem)
                     {
                         #region 移动选项卡
-                        TabControl1.Items.Remove(moveTabItem);
-                        TabControl1.Items.Insert(TabControl1.Items.IndexOf(targetTabitem), moveTabItem);
+                        MyTabcontrolVM.TabItems.Remove(moveTabItem);
+                        MyTabcontrolVM.TabItems.Insert(TabControl1.Items.IndexOf(targetTabitem), moveTabItem);
+                        MyTabcontrolVM.OpenedNodes.Remove(moveTabItem.Item_Node);
+                        MyTabcontrolVM.OpenedNodes.Insert(MyTabcontrolVM.OpenedNodes.IndexOf(targetTabitem.Item_Node), moveTabItem.Item_Node);
+                        TabControl1.SelectedIndex = MyTabcontrolVM.OpenedNodes.IndexOf(targetTabitem.Item_Node) - 1;
                         #endregion
                     }
                 }
