@@ -1,22 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <ShowAllFiles>false</ShowAllFiles>
+  </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UserControls\Canvas\BaseControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\Canvas\Circle.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\Canvas\Line.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\Canvas\Rectangle.xaml.cs">
+    <Compile Update="UserControls\Canvas\Rhombus.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\Canvas\Rhombus.xaml.cs">
+    <Compile Update="UserControls\Views\BoardCaseCanvas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\Views\MyTabcontrol.xaml.cs">
@@ -28,9 +33,6 @@
     <Compile Update="UserControls\Views\NodeDetails.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\Views\TestCanvas.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\AddNodeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -39,16 +41,19 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UserControls\Canvas\BaseControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserControls\Canvas\Circle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Canvas\Line.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\Canvas\Rectangle.xaml">
+    <Page Update="UserControls\Canvas\Rhombus.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\Canvas\Rhombus.xaml">
+    <Page Update="UserControls\Views\BoardCaseCanvas.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Views\MyTabcontrol.xaml">
@@ -58,9 +63,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Views\NodeDetails.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UserControls\Views\TestCanvas.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AddNodeWindow.xaml">

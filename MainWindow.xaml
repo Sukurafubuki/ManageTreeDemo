@@ -25,7 +25,7 @@
         </Style>
         <converters:StringToImageSourceConverter x:Key="MyImageConverter1"/>
     </Window.Resources>
-    <Grid Margin="0,0,0,0">
+    <Grid Margin="0,0,0,0" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>

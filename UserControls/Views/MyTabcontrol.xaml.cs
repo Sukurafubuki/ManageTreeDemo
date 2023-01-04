@@ -58,7 +58,6 @@ namespace ManageTreeDemo.UserControls.Views
                 //仅当触发控件为合理控件时，做拖动准备
                 if (source.GetType() == typeof(MyTabItemWithClose))
                 {
-                    //MessageBox.Show("yes");
                     _lastMouseDown = e.GetPosition(TabControl1);
                     //视觉树获取触发的mytabitemwithclose控件
                     moveTabItem = source as MyTabItemWithClose;

@@ -285,6 +285,24 @@ namespace ManageTreeDemo
             Node canvasNode = new Node("canvas");
             _maintreeVM.NoedDouble_Click(canvasNode);
         }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //
+            //if ((_maintreeVM.NodeTabs.TabControl1.SelectedItem as MyTabItemWithClose).Content is TestCanvas)
+            //{
+            //    TestCanvas _cancas= (_maintreeVM.NodeTabs.TabControl1.SelectedItem as MyTabItemWithClose).Content as TestCanvas;
+            //    if (_cancas.editing_Thumb != null)
+            //    {
+            //        int index = _cancas.right.Children.IndexOf(_cancas.editing_Thumb);
+            //        bool test= _cancas.right.Children[index] is ManageTreeDemo.UserControls.Canvas.MyRectangle;
+            //        ManageTreeDemo.UserControls.Canvas.MyRectangle rect = (_cancas.right.Children[index]) as ManageTreeDemo.UserControls.Canvas.MyRectangle;
+            //        rect.layer.Visibility = Visibility.Hidden;
+            //    }
+            //    _cancas.editing_Thumb = null;
+
+            //}
+        }
         //private Node getxmlNodes(string xmlpath,string xmlsite)
         //{
         //    Node node = new Node();

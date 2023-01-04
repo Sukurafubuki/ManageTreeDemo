@@ -6,26 +6,32 @@
              xmlns:local="clr-namespace:ManageTreeDemo.UserControls.Canvas"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Canvas>
-        <local:MyBaseThumb x:Name="s" Canvas.Left="0" Canvas.Top="0"  Width="80" Height="80" Background="AliceBlue" BorderThickness="1"  >
+    <Canvas Loaded="Canvas_Loaded" Name="canv">
+        <local:MyBaseThumb x:Name="s" Canvas.Left="0" Canvas.Top="0"  Width="80" Height="80"  BorderThickness="1" SizeChanged="s_SizeChanged"  >
             <Thumb.Template>
                 <ControlTemplate>
-                    <Border Width="{Binding ElementName=s, Path=Width}" Height="{Binding ElementName=s, Path=Height}" BorderBrush="Black" Background="{Binding ElementName=s, Path=Background}" BorderThickness="{Binding ElementName=s, Path=BorderThickness}" Padding="1">
-                        <TextBox Background="{Binding ElementName=s, Path=Background}" BorderThickness="0" VerticalAlignment="Center"  IsEnabled="{Binding ElementName=s, Path=IsEnableInput}" Width="50" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                            <TextBox.RenderTransform>
-                                <RotateTransform CenterX="25" CenterY="25" Angle="-45" ></RotateTransform>
-                            </TextBox.RenderTransform>
-                        </TextBox>
-                    </Border>
+                    <Grid>
+                        
+                        
+                        <Border BorderBrush="Black" BorderThickness="{Binding ElementName=s, Path=BorderThickness}">
+                            <!--Width="{Binding ElementName=s, Path=Width}" Height="{Binding ElementName=s, Path=Height}" BorderBrush="Black" Background="#00F0F8FF" BorderThickness="{Binding ElementName=s, Path=BorderThickness}" Padding="1"-->
+
+
+                            <TextBox Background="#00FFFFFF" BorderThickness="0" VerticalAlignment="Center"  IsEnabled="{Binding ElementName=s, Path=IsEnableInput}" Width="50" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+
+                            </TextBox>
+                        </Border>
+                    </Grid>
                 </ControlTemplate>
             </Thumb.Template>
             <Thumb.RenderTransform>
                 <TransformGroup>
-                    <RotateTransform CenterX="40" CenterY="40" Angle="45"></RotateTransform>
-                    <ScaleTransform CenterX="40" CenterY="40" ScaleX="0.8"></ScaleTransform>
-                    <TranslateTransform X="10" Y="15"></TranslateTransform>
+                    <!--<RotateTransform CenterX="40" CenterY="40" Angle="45"></RotateTransform>-->
+                    <!--<ScaleTransform CenterX="40" CenterY="40" ScaleX="0.8"></ScaleTransform>
+                    <TranslateTransform X="0" Y="0"></TranslateTransform>-->
                 </TransformGroup>
             </Thumb.RenderTransform>
         </local:MyBaseThumb>
+        <!--<Polygon Points="{Binding polygonpoints}" Fill="Green" ></Polygon>-->
     </Canvas>
 </UserControl>

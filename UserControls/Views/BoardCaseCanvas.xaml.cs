@@ -13,14 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ManageTreeDemo.UserControls.Canvas
+namespace ManageTreeDemo.UserControls.Views
 {
+
     /// <summary>
-    /// Rectangle.xaml 的交互逻辑
+    /// BoardCaseCanvas.xaml 的交互逻辑
     /// </summary>
-    public partial class Rectangle : UserControl
+    public partial class BoardCaseCanvas
     {
-        public Rectangle()
+        public BoardCaseCanvas()
         {
             InitializeComponent();
         }

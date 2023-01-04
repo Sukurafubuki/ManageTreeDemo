@@ -65,7 +65,7 @@ namespace ManageTreeDemo.UserControls.ViewModel
             else
             {
                 MyTabItemWithClose item = new MyTabItemWithClose(_node,this);
-                item.Content = _node.NodeName=="canvas"? new TestCanvas(): new NodeDetails(_node);
+                item.Content = _node.NodeName=="canvas"? new BoardCaseCanvas(): new NodeDetails(_node);
                 //绑定事件触发委托
                 item._itemclose += this.itemclose;
                 //MyTabcontrol.TabControl1.Items.Add(item);

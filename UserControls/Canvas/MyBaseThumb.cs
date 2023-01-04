@@ -20,6 +20,17 @@ namespace ManageTreeDemo.UserControls.Canvas
         /// </summary>
         public static readonly DependencyProperty IsEnableInputProperty = DependencyProperty.Register("IsEnableInput", typeof(bool), typeof(MyBaseThumb));
 
+
+        /// <summary>
+        /// 是否选择
+        /// </summary>
+        public bool IsSelected { get { return (bool)GetValue(IsSelectedProperty); } set { SetValue(IsSelectedProperty, value); } }
+
+        /// <summary>
+        /// 依赖属性
+        /// </summary>
+        public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register("IsSelected", typeof(bool), typeof(MyBaseThumb));
+
         public MyBaseThumb() : base()
         {
             this.DragStarted += ThumbControl_DragStarted;
